@@ -4,52 +4,52 @@
   vars_files: 
     - secret.yml
   tasks:
-    - name: Upgrade all packages 
-      ansible.builtin.yum:
-        name: '*'
-        state: latest 
-        # sudo yum update
+    # - name: Upgrade all packages 
+    #   ansible.builtin.yum:
+    #     name: '*'
+    #     state: latest 
+    #     # sudo yum update
 
-    - name: Remove older versions of docker if installed
-      ansible.builtin.yum:
-        name:
-          - docker
-          - docker-client
-          - docker-client-latest
-          - docker-common
-          - docker-latest
-          - docker-latest-logrotate
-          - docker-logrotate
-          - docker-engine
-        state: removed
+    # - name: Remove older versions of docker if installed
+    #   ansible.builtin.yum:
+    #     name:
+    #       - docker
+    #       - docker-client
+    #       - docker-client-latest
+    #       - docker-common
+    #       - docker-latest
+    #       - docker-latest-logrotate
+    #       - docker-logrotate
+    #       - docker-engine
+    #     state: removed
 
-    - name: Install yum utils
-      ansible.builtin.yum:
-        name: "yum-utils"
-        state: latest
+    # - name: Install yum utils
+    #   ansible.builtin.yum:
+    #     name: "yum-utils"
+    #     state: latest
 
-    - name: Add docker repo
-      ansible.builtin.get_url:
-        url: https://download.docker.com/linux/centos/docker-ce.repo
-        dest: /etc/yum.repos.d/docker-ce.repo
+    # - name: Add docker repo
+    #   ansible.builtin.get_url:
+    #     url: https://download.docker.com/linux/centos/docker-ce.repo
+    #     dest: /etc/yum.repos.d/docker-ce.repo
 
-    - name: Install docker
-      ansible.builtin.package:
-        name: docker-ce
-        state: latest
+    # - name: Install docker
+    #   ansible.builtin.package:
+    #     name: docker-ce
+    #     state: latest
 
-    - name: Add ec2-user to docker group
-      ansible.builtin.user:
-        name: ec2-user
-        groups: docker
-        append: yes
-        #  usermod -a -G docker ec2-user
+    # - name: Add ec2-user to docker group
+    #   ansible.builtin.user:
+    #     name: ec2-user
+    #     groups: docker
+    #     append: yes
+    #     #  usermod -a -G docker ec2-user
 
-    - name: Start docker service
-      ansible.builtin.service:
-        name: docker
-        state: started
-        enabled: yes
+    # - name: Start docker service
+    #   ansible.builtin.service:
+    #     name: docker
+    #     state: started
+    #     enabled: yes
 
     - name: Copy files to postgresql-node
       ansible.builtin.copy:

@@ -1,0 +1,8 @@
+- name: Install Docker 
+  ansible.builtin.import_playbook: install_docker.yml
+- name: Run docker_postgre.yml
+  ansible.builtin.import_playbook: docker_postgre.yml
+- name: Run docker_nodejs.yml
+  ansible.builtin.import_playbook: docker_nodejs.yml
+- name: Run docker_react.yml
+  ansible.builtin.import_playbook: docker_react.yml

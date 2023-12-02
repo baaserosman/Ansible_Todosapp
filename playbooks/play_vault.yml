@@ -1,0 +1,6 @@
+
+- name: Postgre Database configuration
+  hosts: _ansible_postgresql
+  become: true
+  roles:
+    - postgre
